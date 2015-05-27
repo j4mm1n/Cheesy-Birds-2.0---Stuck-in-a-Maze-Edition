@@ -75,7 +75,6 @@ public class Speler extends GameObject {
                 if (!veld.checkIfBlocked(getVeldX(), getVeldY() - 32)) {
                     move(0, -1);
                     changeImage("imgUp");
-                    System.out.println("up");
                     break;
                 } else {
                     break;
@@ -84,7 +83,6 @@ public class Speler extends GameObject {
                 if (!veld.checkIfBlocked(getVeldX(), getVeldY() + 32)) {
                     move(0, 1);
                     changeImage("imgDown");
-                    System.out.println("down");
                     break;
                 } else {
                     break;
@@ -93,7 +91,6 @@ public class Speler extends GameObject {
                 if (!veld.checkIfBlocked(getVeldX() - 32, getVeldY())) {
                     move(-1, 0);
                     changeImage("imgLeft");
-                    System.out.println("left");
                     break;
                 } else {
                     break;
@@ -102,7 +99,6 @@ public class Speler extends GameObject {
                 if (!veld.checkIfBlocked(getVeldX() + 32, getVeldY())) {
                     move(1, 0);
                     changeImage("imgRight");
-                    System.out.println("right");
                     break;
                 } else {
                     break;
