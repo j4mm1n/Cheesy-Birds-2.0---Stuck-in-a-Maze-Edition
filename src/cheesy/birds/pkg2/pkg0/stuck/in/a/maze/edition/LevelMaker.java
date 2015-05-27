@@ -102,7 +102,7 @@ class LevelMaker extends JPanel implements ActionListener {
                     Muur counter = new Muur();
                     muur.naam = "muur" + muurCounter;
                     g.drawImage(muur.getPlaatjeVeld(), x * VELDGROOTTE, y * VELDGROOTTE, null);
-                    System.out.println("New Muur: " + muur.naam);
+                    //System.out.println("New Muur: " + muur.naam);
                 }
                 if(ArrayStringMap[y][x].equals("g")) {
                     grasCounter++;
@@ -141,22 +141,22 @@ class LevelMaker extends JPanel implements ActionListener {
             int keyCode = e.getKeyCode();
 
             if (keyCode == KeyEvent.VK_W) {         //Speler beweegt omhoog.
-                speler.checkAndMoveUp();
+                speler.checkAndMove("up");
                 repaint();
             }
 
             if (keyCode == KeyEvent.VK_S) {         //Speler beweegt omlaag.
-                speler.checkAndMoveDown();
+                speler.checkAndMove("down");
                 repaint();
             }
 
             if (keyCode == KeyEvent.VK_A) {         //Speler beweegt naar links.
-                speler.checkAndMoveLeft();
+                speler.checkAndMove("left");
                 repaint();
             }
 
             if (keyCode == KeyEvent.VK_D) {         //Speler beweegt naar rechts.
-               speler.checkAndMoveRight();
+               speler.checkAndMove("right");
                repaint();
             }
 

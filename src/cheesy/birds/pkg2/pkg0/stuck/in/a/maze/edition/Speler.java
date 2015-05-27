@@ -69,31 +69,44 @@ public class Speler extends GameObject {
         return SpelerPlaatje;
     }
 
-    public void checkAndMoveUp() {
-        if (!veld.checkIfBlocked(getVeldX(), getVeldY() - 32)) {
-            move(0, -1);
-            changeImage("imgUp");
-        }
-    }
-
-    public void checkAndMoveDown() {
-        if (!veld.checkIfBlocked(getVeldX(), getVeldY() + 32)) {
-            move(0, 1);
-            changeImage("imgDown");
-        }
-    }
-
-    public void checkAndMoveLeft() {
-        if (!veld.checkIfBlocked(getVeldX() - 32, getVeldY())) {
-            move(-1, 0);
-            changeImage("imgLeft");
-        }
-    }
-
-    public void checkAndMoveRight() {
-        if (!veld.checkIfBlocked(getVeldX() + 32, getVeldY())) {
-            move(1, 0);
-            changeImage("imgRight");
+    public void checkAndMove(String direction) {
+        switch (direction) {
+            case "up":
+                if (!veld.checkIfBlocked(getVeldX(), getVeldY() - 32)) {
+                    move(0, -1);
+                    changeImage("imgUp");
+                    System.out.println("up");
+                    break;
+                } else {
+                    break;
+                }
+            case "down":
+                if (!veld.checkIfBlocked(getVeldX(), getVeldY() + 32)) {
+                    move(0, 1);
+                    changeImage("imgDown");
+                    System.out.println("down");
+                    break;
+                } else {
+                    break;
+                }
+            case "left":
+                if (!veld.checkIfBlocked(getVeldX() - 32, getVeldY())) {
+                    move(-1, 0);
+                    changeImage("imgLeft");
+                    System.out.println("left");
+                    break;
+                } else {
+                    break;
+                }
+            case "right":
+                if (!veld.checkIfBlocked(getVeldX() + 32, getVeldY())) {
+                    move(1, 0);
+                    changeImage("imgRight");
+                    System.out.println("right");
+                    break;
+                } else {
+                    break;
+                }
         }
     }
 
