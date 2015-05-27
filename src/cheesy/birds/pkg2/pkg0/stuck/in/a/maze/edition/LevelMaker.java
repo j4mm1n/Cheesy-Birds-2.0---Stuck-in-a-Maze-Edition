@@ -22,7 +22,8 @@ class LevelMaker extends JPanel implements ActionListener {
     public final int VELDGROOTTE = 32;
     private Muur muur = new Muur();
     private Gras gras = new Gras();
-    private int counter = 0;
+    private int muurCounter = 0;
+    private int grasCounter = 0;
     
     /*
     public Veld[][] map = {
@@ -97,16 +98,16 @@ class LevelMaker extends JPanel implements ActionListener {
         for (int y = 0; y < 15; y++) {
             for (int x = 0; x < 15; x++) {
                 if(ArrayStringMap[y][x].equals("m")) {
-                    counter++;
+                    muurCounter++;
                     Muur counter = new Muur();
-                    muur.naam = "muur" + counter;
+                    muur.naam = "muur" + muurCounter;
                     g.drawImage(muur.getPlaatjeVeld(), x * VELDGROOTTE, y * VELDGROOTTE, null);
                     System.out.println("New Muur: " + muur.naam);
                 }
                 if(ArrayStringMap[y][x].equals("g")) {
-                    //gras.counter++;
+                    grasCounter++;
                     Muur muur = new Muur();
-                    muur.naam = "muur" + y;
+                    muur.naam = "muur" + grasCounter;
                     g.drawImage(gras.getPlaatjeVeld(), x * VELDGROOTTE, y * VELDGROOTTE, null);
                 }
             }
