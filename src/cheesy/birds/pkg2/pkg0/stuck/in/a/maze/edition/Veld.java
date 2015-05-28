@@ -19,7 +19,12 @@ public class Veld {
 
     private String[] ArrayVelden = new String[15];
     private Scanner scanner;
-    //private LevelMaker levelmaker = new LevelMaker();
+    public static final int VELDHOOGTE = 32;
+    public static final int VELDBREEDTE = 32;
+    public int veldX;
+    public int veldY;
+    public boolean loopbaar;
+    
 
     public Veld() {
 
@@ -30,20 +35,24 @@ public class Veld {
 
     public String getVeld(int x, int y) {
 
-        String index = ArrayVelden[y].substring(x, x + 1);
+        //String index = ArrayVelden[y].substring(x, x + 1);
+        
+        LevelMaker levelmaker = new LevelMaker();
+        
+        String index = levelmaker.ArrayStringMap[x][y];
         return index;
     }
 
     public Boolean checkIfBlocked(int x, int y) {
         try {
             LevelMaker levelmaker = new LevelMaker();
-            int yLocation = y / levelmaker.VELDGROOTTE;
-            int xLocation= x / levelmaker.VELDGROOTTE;
+            int yLocation = y / VELDHOOGTE;
+            int xLocation= x / VELDBREEDTE;
 
-                //Deze return gebruiken bij het inlezen vanuit 2dArray met Objecten.
+            //Deze return gebruiken bij het inlezen vanuit 2dArray met Objecten.
             //return levelmaker.map[yLocation][xLocation] instanceof Muur;
             
-                //Deze return gebruiken bij het inlezen vanuit 2dArray met Strings.
+            //Deze return gebruiken bij het inlezen vanuit 2dArray met Strings.
             if(levelmaker.ArrayStringMap[yLocation][xLocation].equals("m"))
             {
                 return true;

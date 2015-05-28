@@ -11,28 +11,20 @@ import javax.swing.ImageIcon;
 /**
  *
  * @author HICT
- *
- *
  */
-public class Muur extends Veld {
+public class Geit extends GameObject {
 
-    private final Image wall;
-    public static String naam;
-    
+    private final Image geit;
 
-    public Muur() {
-        //inladen van de muren.
-        ImageIcon img = new ImageIcon("C:\\Maze\\wall.jpg");
-        wall = img.getImage();
-        
-        loopbaar = false;
+    public Geit() {
+        ImageIcon img = new ImageIcon("C:\\Maze\\geit.png");
+        geit = img.getImage();
 
     }
     
     @Override
-    public Image getPlaatjeVeld(){
-        return wall;
+    public Image getPlaatjeGameObject() {
+        return geit;
     }
 
-    
 }

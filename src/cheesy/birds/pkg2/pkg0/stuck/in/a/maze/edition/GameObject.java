@@ -5,10 +5,29 @@
  */
 package cheesy.birds.pkg2.pkg0.stuck.in.a.maze.edition;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author HICT
  */
 public class GameObject {
+
+    public static final int VELDHOOGTE = 32;
+    public static final int VELDBREEDTE = 32;
+    public final Image plaatje;
+
+    public GameObject() {
+
+        //Inladen van het default plaatje.
+        ImageIcon img = new ImageIcon("C:\\Maze\\plaatje.jpg");
+        plaatje = img.getImage();
+        
+    }
     
+        public Image getPlaatjeGameObject() {
+        return plaatje;
+    }
+
 }

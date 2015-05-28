@@ -19,9 +19,8 @@ class LevelMaker extends JPanel implements ActionListener {
     private Timer timer;
     private Veld veld;
     private Speler speler;
-    public final int VELDGROOTTE = 32;
-    private Muur muur = new Muur();
-    private Gras gras = new Gras();
+    //private Muur muur = new Muur();
+    //private Gras gras = new Gras();
     private int muurCounter = 0;
     private int grasCounter = 0;
     
@@ -99,19 +98,25 @@ class LevelMaker extends JPanel implements ActionListener {
             for (int x = 0; x < 15; x++) {
                 if(ArrayStringMap[y][x].equals("m")) {
                     muurCounter++;
-                    Muur counter = new Muur();
-                    muur.naam = "muur" + muurCounter;
-                    g.drawImage(muur.getPlaatjeVeld(), x * VELDGROOTTE, y * VELDGROOTTE, null);
-                    //System.out.println("New Muur: " + muur.naam);
+                    Muur muurCounter = new Muur();
+                    //Muur.naam = "muur" + muurCounter;
+                    muurCounter.veldX = x;
+                    muurCounter.veldY = y;
+                    g.drawImage(muurCounter.getPlaatjeVeld(), x * muurCounter.VELDBREEDTE, y * muurCounter.VELDHOOGTE, null);
+                    System.out.println("Muurnaam loopX : " + x + "loopY" + y);
                 }
                 if(ArrayStringMap[y][x].equals("g")) {
                     grasCounter++;
-                    Muur muur = new Muur();
-                    muur.naam = "muur" + grasCounter;
-                    g.drawImage(gras.getPlaatjeVeld(), x * VELDGROOTTE, y * VELDGROOTTE, null);
+                    Gras grasCounter = new Gras();
+                    //Gras.naam = "gras" + grasCounter;
+                    grasCounter.veldX = x;
+                    grasCounter.veldY = y;
+                    g.drawImage(grasCounter.getPlaatjeVeld(), x * grasCounter.VELDBREEDTE, y * grasCounter.VELDBREEDTE, null);
+                    System.out.println("Grascounter: " + x + "loopY" + y);
                 }
             }
-            
+            muurCounter = 0;
+            grasCounter = 0;
         }
 
         //Deze loop gebruiken bij het inlezen van map uit een .txt bestand.
@@ -131,7 +136,7 @@ class LevelMaker extends JPanel implements ActionListener {
         
         
         //Draw speler
-        g.drawImage(speler.getSpeler(), speler.getVeldX(), speler.getVeldY(), null);
+        g.drawImage(speler.getPlaatjeGameObject(), speler.getVeldX(), speler.getVeldY(), null);
     }
 
     public class ActionListener extends KeyAdapter {

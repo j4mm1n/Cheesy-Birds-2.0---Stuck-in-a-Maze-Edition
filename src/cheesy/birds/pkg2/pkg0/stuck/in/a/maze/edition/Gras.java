@@ -15,17 +15,20 @@ import javax.swing.ImageIcon;
 public class Gras extends Veld {
 
     private final Image gras;
+    public static String naam;
+    
 
     public Gras() {
-       //inladen van het gras. 
+        //inladen van het gras. 
         ImageIcon img = new ImageIcon("C:\\Maze\\grass.png");
-        //ImageIcon img = new ImageIcon("Images/grass.png");
         gras = img.getImage();
+        
+        loopbaar = true;
 
     }
 
     @Override
-    public Image getPlaatjeVeld(){
+    public Image getPlaatjeVeld() {
         return gras;
     }
 

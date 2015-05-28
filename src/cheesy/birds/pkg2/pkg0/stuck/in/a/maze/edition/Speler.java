@@ -14,11 +14,11 @@ import javax.swing.ImageIcon;
  */
 public class Speler extends GameObject {
 
-    private int veldX, veldY;
+    private int LocatieVeldX, LocatieVeldY;
     private Image SpelerPlaatje;
     private Veld veld = new Veld();
 
-    ImageIcon img = new ImageIcon("C:\\Maze\\bird2.png");
+    ImageIcon imgNormal = new ImageIcon("C:\\Maze\\bird2.png");
     ImageIcon imgLeft = new ImageIcon("C:\\Maze\\bird2Left.png");
     ImageIcon imgRight = new ImageIcon("C:\\Maze\\bird2Right.png");
     ImageIcon imgUp = new ImageIcon("C:\\Maze\\bird2Up.png");
@@ -26,32 +26,33 @@ public class Speler extends GameObject {
     //private Image img = new ImageIcon("../bird.png").getImage();
     public Speler() {
 
-        SpelerPlaatje = img.getImage();
+        SpelerPlaatje = imgNormal.getImage();
 
-        veldX = 32;
-        veldY = 32;
+        LocatieVeldX = Veld.VELDBREEDTE;
+        LocatieVeldY = Veld.VELDHOOGTE;
 
     }
 
-    public Image getSpeler() {
+    @Override
+    public Image getPlaatjeGameObject() {
         return SpelerPlaatje;
     }
 
     public void move(int paramVeldX, int paramVeldY) {
 
-        veldX = veldX + paramVeldX * 32;
-        veldY = veldY + paramVeldY * 32;
+        LocatieVeldX = LocatieVeldX + paramVeldX * Veld.VELDBREEDTE;
+        LocatieVeldY = LocatieVeldY + paramVeldY * Veld.VELDHOOGTE;
 
         //Move test
         //System.out.println("MovingX " + veldX + "MovingY " + veldY);
     }
 
     public int getVeldX() {
-        return veldX;
+        return LocatieVeldX;
     }
 
     public int getVeldY() {
-        return veldY;
+        return LocatieVeldY;
     }
 
     public Image getSpelerRechts() {
@@ -72,7 +73,7 @@ public class Speler extends GameObject {
     public void checkAndMove(String direction) {
         switch (direction) {
             case "up":
-                if (!veld.checkIfBlocked(getVeldX(), getVeldY() - 32)) {
+                if (!veld.checkIfBlocked(getVeldX(), getVeldY() - Veld.VELDHOOGTE)) {
                     move(0, -1);
                     changeImage("imgUp");
                     break;
@@ -80,7 +81,7 @@ public class Speler extends GameObject {
                     break;
                 }
             case "down":
-                if (!veld.checkIfBlocked(getVeldX(), getVeldY() + 32)) {
+                if (!veld.checkIfBlocked(getVeldX(), getVeldY() + Veld.VELDHOOGTE)) {
                     move(0, 1);
                     changeImage("imgDown");
                     break;
@@ -88,7 +89,7 @@ public class Speler extends GameObject {
                     break;
                 }
             case "left":
-                if (!veld.checkIfBlocked(getVeldX() - 32, getVeldY())) {
+                if (!veld.checkIfBlocked(getVeldX() - Veld.VELDBREEDTE, getVeldY())) {
                     move(-1, 0);
                     changeImage("imgLeft");
                     break;
@@ -96,7 +97,7 @@ public class Speler extends GameObject {
                     break;
                 }
             case "right":
-                if (!veld.checkIfBlocked(getVeldX() + 32, getVeldY())) {
+                if (!veld.checkIfBlocked(getVeldX() + Veld.VELDBREEDTE, getVeldY())) {
                     move(1, 0);
                     changeImage("imgRight");
                     break;
@@ -118,7 +119,7 @@ public class Speler extends GameObject {
                 SpelerPlaatje = imgUp.getImage();
                 break;
             case "imgDown":
-                SpelerPlaatje = img.getImage();
+                SpelerPlaatje = imgNormal.getImage();
                 break;
         }
     }
