@@ -24,10 +24,12 @@ public class Veld {
     public int veldX;
     public int veldY;
     public boolean loopbaar;
-    
+    public final Image plaatje;
 
     public Veld() {
-
+        ImageIcon img = new ImageIcon("C:\\Maze\\plaatje.jpg");
+        plaatje = img.getImage();
+        
         //openFile();       //deze methode gebruiken bij het maken van een map uit een .txt bestand.
         //readFile();       //deze methode gebruiken bij het maken van een map uit een .txt bestand.
         //closeFile();      //deze methode gebruiken bij het maken van een map uit een .txt bestand.
@@ -36,9 +38,8 @@ public class Veld {
     public String getVeld(int x, int y) {
 
         //String index = ArrayVelden[y].substring(x, x + 1);
-        
         LevelMaker levelmaker = new LevelMaker();
-        
+
         String index = levelmaker.ArrayStringMap[x][y];
         return index;
     }
@@ -47,14 +48,12 @@ public class Veld {
         try {
             LevelMaker levelmaker = new LevelMaker();
             int yLocation = y / VELDHOOGTE;
-            int xLocation= x / VELDBREEDTE;
+            int xLocation = x / VELDBREEDTE;
 
             //Deze return gebruiken bij het inlezen vanuit 2dArray met Objecten.
             //return levelmaker.map[yLocation][xLocation] instanceof Muur;
-            
             //Deze return gebruiken bij het inlezen vanuit 2dArray met Strings.
-            if(levelmaker.ArrayStringMap[yLocation][xLocation].equals("m"))
-            {
+            if (levelmaker.ArrayStringMap[yLocation][xLocation].equals("m")) {
                 return true;
             }
         } catch (Exception e) {
@@ -95,8 +94,7 @@ public class Veld {
     }
 
     public Image getPlaatjeVeld() {
-        Gras g = new Gras();
-        return g.getPlaatjeVeld();
+        return plaatje;
     }
 
 }

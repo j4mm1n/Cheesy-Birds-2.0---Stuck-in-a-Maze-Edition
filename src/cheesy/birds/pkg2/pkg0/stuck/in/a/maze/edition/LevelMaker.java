@@ -8,7 +8,6 @@ package cheesy.birds.pkg2.pkg0.stuck.in.a.maze.edition;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-//import static sun.org.mozilla.javascript.internal.ScriptRuntime.instanceOf;
 
 /**
  *
@@ -19,38 +18,18 @@ class LevelMaker extends JPanel implements ActionListener {
     private Timer timer;
     private Veld veld;
     private Speler speler;
-    //private Muur muur = new Muur();
-    //private Gras gras = new Gras();
+    private Geit geit;
     private int muurCounter = 0;
     private int grasCounter = 0;
-    
-    /*
-    public Veld[][] map = {
-        {muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur,},
-        {muur, gras, gras, gras, gras, gras, gras, gras, gras, gras, gras, gras, gras, gras, muur,},
-        {muur, gras, muur, muur, muur, muur, muur, muur, muur, muur, muur, gras, muur, muur, muur,},
-        {muur, gras, muur, gras, gras, gras, gras, gras, gras, gras, gras, gras, muur, gras, muur,},
-        {muur, gras, muur, gras, muur, muur, muur, muur, muur, muur, muur, gras, muur, gras, muur,},
-        {muur, gras, muur, gras, muur, gras, gras, gras, muur, gras, muur, gras, gras, gras, muur,},
-        {muur, gras, muur, gras, muur, gras, gras, gras, muur, gras, muur, gras, muur, gras, muur,},
-        {muur, gras, muur, gras, muur, gras, gras, gras, muur, gras, gras, gras, muur, gras, muur,},
-        {muur, gras, muur, gras, muur, gras, gras, gras, muur, muur, muur, gras, muur, gras, muur,},
-        {muur, gras, gras, gras, muur, gras, gras, gras, gras, gras, gras, gras, muur, gras, muur,},
-        {muur, gras, muur, gras, muur, gras, gras, gras, gras, gras, gras, gras, muur, gras, muur,},
-        {muur, gras, muur, gras, muur, gras, gras, gras, gras, gras, gras, gras, muur, gras, muur,},
-        {muur, gras, muur, gras, muur, muur, muur, muur, muur, muur, muur, muur, muur, gras, muur,},
-        {muur, gras, muur, gras, gras, gras, gras, gras, gras, gras, gras, gras, gras, gras, muur,},
-        {muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur, muur,}};
-    */
     
     public String[][] ArrayStringMap = {
         {"m","m","m","m","m","m","m","m","m","m","m","m","m","m","m",},
         {"m","g","g","g","g","g","g","g","g","g","g","g","g","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
+        {"m","g","m","m","g","m","m","m","m","m","m","m","m","g","m",},
+        {"m","g","m","m","g","m","m","m","m","m","m","m","m","g","m",},
         {"m","g","g","g","g","g","g","g","g","g","g","g","g","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
+        {"m","g","m","m","g","m","m","m","m","m","m","m","m","g","m",},
+        {"m","g","m","m","g","m","m","m","m","m","m","m","m","g","m",},
         {"m","g","g","g","g","g","g","g","g","g","g","g","g","g","m",},
         {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
         {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
@@ -59,11 +38,11 @@ class LevelMaker extends JPanel implements ActionListener {
         {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
         {"m","g","g","g","g","g","g","g","g","g","g","g","g","g","m",},
         {"m","m","m","m","m","m","m","m","m","m","m","m","m","m","m",}};
-    
 
     public LevelMaker() {
         veld = new Veld();
         speler = new Speler();
+        geit = new Geit();
         addKeyListener(new ActionListener());
         setFocusable(true);
     }
@@ -77,29 +56,13 @@ class LevelMaker extends JPanel implements ActionListener {
     public void paint(Graphics g) {
         super.paint(g);
 
-        //Inlezen vanuit de 2dArray met objecten.
-        /*
-        for (int y = 0; y < 15; y++) {
-            for (int x = 0; x < 15; x++) {
-                if (map[y][x].equals(muur)) {
-                    g.drawImage(muur.getPlaatjeVeld(), x * VELDGROOTTE, y * VELDGROOTTE, null);
-                }
-                if (map[y][x].equals(gras)) {
-                    g.drawImage(gras.getPlaatjeVeld(), x * VELDGROOTTE, y * VELDGROOTTE, null);
-                }
-            }
-
-        }
-        */
-        
-        
+        //Draw gras and muur.
         //Deze loop gebruiken bij het inlezen vanuit een String[][].
         for (int y = 0; y < 15; y++) {
             for (int x = 0; x < 15; x++) {
                 if(ArrayStringMap[y][x].equals("m")) {
                     muurCounter++;
                     Muur muurCounter = new Muur();
-                    //Muur.naam = "muur" + muurCounter;
                     muurCounter.veldX = x;
                     muurCounter.veldY = y;
                     g.drawImage(muurCounter.getPlaatjeVeld(), x * muurCounter.VELDBREEDTE, y * muurCounter.VELDHOOGTE, null);
@@ -108,7 +71,6 @@ class LevelMaker extends JPanel implements ActionListener {
                 if(ArrayStringMap[y][x].equals("g")) {
                     grasCounter++;
                     Gras grasCounter = new Gras();
-                    //Gras.naam = "gras" + grasCounter;
                     grasCounter.veldX = x;
                     grasCounter.veldY = y;
                     g.drawImage(grasCounter.getPlaatjeVeld(), x * grasCounter.VELDBREEDTE, y * grasCounter.VELDBREEDTE, null);
@@ -134,6 +96,8 @@ class LevelMaker extends JPanel implements ActionListener {
          }
          */
         
+        //Draw geit
+        g.drawImage(geit.getPlaatjeGameObject(), geit.getVeldX(), geit.getVeldY(), null);
         
         //Draw speler
         g.drawImage(speler.getPlaatjeGameObject(), speler.getVeldX(), speler.getVeldY(), null);
@@ -141,7 +105,7 @@ class LevelMaker extends JPanel implements ActionListener {
 
     public class ActionListener extends KeyAdapter {
 
-        //Beweging voor de speler
+        //Toetsen afvangen voor beweging speler
         public void keyPressed(KeyEvent e) {
             int keyCode = e.getKeyCode();
 

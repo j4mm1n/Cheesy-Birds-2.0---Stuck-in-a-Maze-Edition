@@ -20,8 +20,10 @@ public class Geit extends GameObject {
         ImageIcon img = new ImageIcon("C:\\Maze\\geit.png");
         geit = img.getImage();
 
+        LocatieVeldX = 32;
+        LocatieVeldY = 64;
     }
-    
+
     @Override
     public Image getPlaatjeGameObject() {
         return geit;
