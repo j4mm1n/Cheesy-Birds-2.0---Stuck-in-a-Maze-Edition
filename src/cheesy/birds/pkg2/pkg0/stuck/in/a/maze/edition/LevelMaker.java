@@ -81,21 +81,6 @@ class LevelMaker extends JPanel implements ActionListener {
             grasCounter = 0;
         }
 
-        //Deze loop gebruiken bij het inlezen van map uit een .txt bestand.
-        /*
-         for (int y = 0; y < 15; y++) {        
-         for (int x = 0; x < 15; x++) {
-         if (M.getVeld(x, y).equals("W")) {
-         g.drawImage(M.getWall(), x * 32, y * 32, null);
-         }
-         if (M.getVeld(x, y).equals("G")) {
-         g.drawImage(M.getGras(), x * 32, y * 32, null);
-         }
-
-         }
-         }
-         */
-        
         //Draw geit
         g.drawImage(geit.getPlaatjeGameObject(), geit.getVeldX(), geit.getVeldY(), null);
         

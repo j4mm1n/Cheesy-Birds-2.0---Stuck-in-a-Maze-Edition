@@ -23,7 +23,6 @@ public class Speler extends GameObject {
     ImageIcon imgRight = new ImageIcon("C:\\Maze\\bird2Right.png");
     ImageIcon imgUp = new ImageIcon("C:\\Maze\\bird2Up.png");
 
-    //private Image img = new ImageIcon("../bird.png").getImage();
     public Speler() {
 
         SpelerPlaatje = imgNormal.getImage();
