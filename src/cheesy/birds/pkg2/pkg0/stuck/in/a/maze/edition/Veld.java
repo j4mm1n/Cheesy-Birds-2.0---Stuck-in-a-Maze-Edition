@@ -21,7 +21,7 @@ public class Veld {
     public int veldX;
     public int veldY;
     public boolean loopbaar;
-    public final Image plaatje;
+    public Image plaatje;
 
     public Veld() {
         ImageIcon img = new ImageIcon("C:\\Maze\\plaatje.jpg");

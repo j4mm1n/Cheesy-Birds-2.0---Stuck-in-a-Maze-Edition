@@ -19,28 +19,33 @@ class LevelMaker extends JPanel implements ActionListener {
     private Veld veld;
     private Speler speler;
     private Geit geit;
+    private Muur muur;
+    private Gras gras;
     private int muurCounter = 0;
     private int grasCounter = 0;
-    
+
     public String[][] ArrayStringMap = {
-        {"m","m","m","m","m","m","m","m","m","m","m","m","m","m","m",},
-        {"m","g","g","g","g","g","g","g","g","g","g","g","g","g","m",},
-        {"m","g","m","m","g","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","m","m","g","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","g","g","g","g","g","g","g","g","g","g","g","g","m",},
-        {"m","g","m","m","g","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","m","m","g","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","g","g","g","g","g","g","g","g","g","g","g","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","m","m","m","m","m","m","m","m","m","m","m","g","m",},
-        {"m","g","g","g","g","g","g","g","g","g","g","g","g","g","m",},
-        {"m","m","m","m","m","m","m","m","m","m","m","m","m","m","m",}};
+        {"m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m",},
+        {"m", "g", "g", "g", "g", "g", "g", "m", "g", "g", "g", "g", "g", "g", "m",},
+        {"m", "g", "m", "m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
+        {"m", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "m",},
+        {"m", "g", "m", "m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
+        {"m", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "m",},
+        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "g", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "g", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "g", "m", "m", "m", "g", "m",},
+        {"m", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "m",},
+        {"m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m",}};
+    
+    public Veld[][] ArrayVeldMap = new Veld[15][15];
 
     public LevelMaker() {
-        veld = new Veld();
+        //veld = new Veld();            //oud
+        maakMuurEnGras();
         speler = new Speler();
         geit = new Geit();
         addKeyListener(new ActionListener());
@@ -58,34 +63,52 @@ class LevelMaker extends JPanel implements ActionListener {
 
         //Draw gras and muur.
         //Deze loop gebruiken bij het inlezen vanuit een String[][].
-        for (int y = 0; y < 15; y++) {
-            for (int x = 0; x < 15; x++) {
-                if(ArrayStringMap[y][x].equals("m")) {
-                    muurCounter++;
-                    Muur muurCounter = new Muur();
-                    muurCounter.veldX = x;
-                    muurCounter.veldY = y;
-                    g.drawImage(muurCounter.getPlaatjeVeld(), x * muurCounter.VELDGROOTTE, y * muurCounter.VELDGROOTTE, null);
-                    System.out.println("Muurnaam loopX : " + x + "loopY" + y);
+        for (int x = 0; x < 15; x++) {
+            for (int y = 0; y < 15; y++) {
+                Veld tempVeld= ArrayVeldMap[x][y];
+                g.drawImage(tempVeld.getPlaatjeVeld(), x * Veld.VELDGROOTTE, y * Veld.VELDGROOTTE, null);
+                /*
+                if (ArrayVeldMap[x][y].equals(muur)) {
+                    g.drawImage(muur.getPlaatjeVeld(), x * Veld.VELDGROOTTE, y * Veld.VELDGROOTTE, null);
                 }
-                if(ArrayStringMap[y][x].equals("g")) {
+                if (ArrayVeldMap[x][y].equals(gras)) {
+                    g.drawImage(gras.getPlaatjeVeld(), x * Veld.VELDGROOTTE, y * Veld.VELDGROOTTE, null);
+                }*/
+            }
+        }
+
+        //Draw geit
+        g.drawImage(geit.getPlaatjeGameObject(), geit.getVeldX(), geit.getVeldY(), null);
+
+        //Draw speler
+        g.drawImage(speler.getPlaatjeGameObject(), speler.getVeldX(), speler.getVeldY(), null);
+    }
+
+    private void maakMuurEnGras() {
+        for (int x = 0; x < 15; x++) {
+            for (int y = 0; y < 15; y++) {
+                if (ArrayStringMap[x][y].equals("m")) {
+                    muurCounter++;                          
+                    Muur muurNaamCounter = new Muur();
+                    muurNaamCounter.veldX = x;
+                    muurNaamCounter.veldY = y;
+                    ArrayVeldMap[x][y] = muurNaamCounter;
+                    
+                    //System.out.println("Veld Array: " + ArrayVeldMap[x][y]);
+                    
+                }
+                if (ArrayStringMap[x][y].equals("g")) {
                     grasCounter++;
-                    Gras grasCounter = new Gras();
-                    grasCounter.veldX = x;
-                    grasCounter.veldY = y;
-                    g.drawImage(grasCounter.getPlaatjeVeld(), x * grasCounter.VELDGROOTTE, y * grasCounter.VELDGROOTTE, null);
-                    System.out.println("Grascounter: " + x + "loopY" + y);
+                    Gras grasNaamCounter = new Gras();
+                    grasNaamCounter.veldX = x;
+                    grasNaamCounter.veldY = y;
+                    ArrayVeldMap[x][y] = grasNaamCounter;
                 }
             }
             muurCounter = 0;
             grasCounter = 0;
         }
 
-        //Draw geit
-        g.drawImage(geit.getPlaatjeGameObject(), geit.getVeldX(), geit.getVeldY(), null);
-        
-        //Draw speler
-        g.drawImage(speler.getPlaatjeGameObject(), speler.getVeldX(), speler.getVeldY(), null);
     }
 
     public class ActionListener extends KeyAdapter {
@@ -110,8 +133,8 @@ class LevelMaker extends JPanel implements ActionListener {
             }
 
             if (keyCode == KeyEvent.VK_D) {         //Speler beweegt naar rechts.
-               speler.checkAndMove("right");
-               repaint();
+                speler.checkAndMove("right");
+                repaint();
             }
 
         }

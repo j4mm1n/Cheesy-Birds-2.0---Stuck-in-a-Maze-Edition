@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 public class Speler extends GameObject {
 
     private Image SpelerPlaatje;
-    private Veld veld = new Veld();
+    private Veld veld;
 
     ImageIcon imgNormal = new ImageIcon("C:\\Maze\\bird2.png");
     ImageIcon imgLeft = new ImageIcon("C:\\Maze\\bird2Left.png");
@@ -37,7 +37,7 @@ public class Speler extends GameObject {
         return SpelerPlaatje;
     }
 
-    public void move(int paramVeldX, int paramVeldY) {
+    public void move(int paramVeldX, int paramVeldY) {  //private maken
 
         LocatieVeldX = LocatieVeldX + paramVeldX * Veld.VELDGROOTTE;
         LocatieVeldY = LocatieVeldY + paramVeldY * Veld.VELDGROOTTE;

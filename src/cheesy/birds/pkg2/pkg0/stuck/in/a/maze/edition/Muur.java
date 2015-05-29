@@ -16,8 +16,8 @@ import javax.swing.ImageIcon;
  */
 public class Muur extends Veld {
 
-    private final Image wall;
-    public static String naam;
+    private static Image wall;
+    public String naam;
     
 
     public Muur() {
