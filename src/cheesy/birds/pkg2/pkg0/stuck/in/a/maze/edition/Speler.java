@@ -16,7 +16,7 @@ import javax.swing.ImageIcon;
 public class Speler extends GameObject {
 
     private Image SpelerPlaatje;
-    private Veld veld;
+    private Veld veld = new Veld();
 
     ImageIcon imgNormal = new ImageIcon("C:\\Maze\\bird2.png");
     ImageIcon imgLeft = new ImageIcon("C:\\Maze\\bird2Left.png");

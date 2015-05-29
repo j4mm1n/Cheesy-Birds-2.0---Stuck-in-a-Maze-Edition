@@ -65,7 +65,7 @@ class LevelMaker extends JPanel implements ActionListener {
         //Deze loop gebruiken bij het inlezen vanuit een String[][].
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                Veld tempVeld= ArrayVeldMap[x][y];
+                Veld tempVeld= ArrayVeldMap[y][x];
                 g.drawImage(tempVeld.getPlaatjeVeld(), x * Veld.VELDGROOTTE, y * Veld.VELDGROOTTE, null);
                 /*
                 if (ArrayVeldMap[x][y].equals(muur)) {
