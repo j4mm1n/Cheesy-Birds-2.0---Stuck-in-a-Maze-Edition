@@ -14,8 +14,7 @@ import javax.swing.ImageIcon;
  */
 public class GameObject {
 
-    public static final int VELDHOOGTE = 32;
-    public static final int VELDBREEDTE = 32;
+    public static final int OBJECTGROOTTE = 32;
     public final Image plaatje;
     public int LocatieVeldX, LocatieVeldY;
 

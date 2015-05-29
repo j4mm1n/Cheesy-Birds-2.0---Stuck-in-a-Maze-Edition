@@ -5,6 +5,7 @@
  */
 package cheesy.birds.pkg2.pkg0.stuck.in.a.maze.edition;
 
+import static cheesy.birds.pkg2.pkg0.stuck.in.a.maze.edition.Veld.VELDGROOTTE;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -15,7 +16,6 @@ import javax.swing.*;
  */
 class LevelMaker extends JPanel implements ActionListener {
 
-    private Timer timer;
     private Veld veld;
     private Speler speler;
     private Geit geit;
@@ -65,7 +65,7 @@ class LevelMaker extends JPanel implements ActionListener {
                     Muur muurCounter = new Muur();
                     muurCounter.veldX = x;
                     muurCounter.veldY = y;
-                    g.drawImage(muurCounter.getPlaatjeVeld(), x * muurCounter.VELDBREEDTE, y * muurCounter.VELDHOOGTE, null);
+                    g.drawImage(muurCounter.getPlaatjeVeld(), x * muurCounter.VELDGROOTTE, y * muurCounter.VELDGROOTTE, null);
                     System.out.println("Muurnaam loopX : " + x + "loopY" + y);
                 }
                 if(ArrayStringMap[y][x].equals("g")) {
@@ -73,7 +73,7 @@ class LevelMaker extends JPanel implements ActionListener {
                     Gras grasCounter = new Gras();
                     grasCounter.veldX = x;
                     grasCounter.veldY = y;
-                    g.drawImage(grasCounter.getPlaatjeVeld(), x * grasCounter.VELDBREEDTE, y * grasCounter.VELDBREEDTE, null);
+                    g.drawImage(grasCounter.getPlaatjeVeld(), x * grasCounter.VELDGROOTTE, y * grasCounter.VELDGROOTTE, null);
                     System.out.println("Grascounter: " + x + "loopY" + y);
                 }
             }

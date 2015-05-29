@@ -5,6 +5,7 @@
  */
 package cheesy.birds.pkg2.pkg0.stuck.in.a.maze.edition;
 
+import static cheesy.birds.pkg2.pkg0.stuck.in.a.maze.edition.Veld.VELDGROOTTE;
 import java.awt.*;
 import javax.swing.ImageIcon;
 
@@ -14,7 +15,6 @@ import javax.swing.ImageIcon;
  */
 public class Speler extends GameObject {
 
-    private int LocatieVeldX, LocatieVeldY;
     private Image SpelerPlaatje;
     private Veld veld = new Veld();
 
@@ -27,8 +27,8 @@ public class Speler extends GameObject {
 
         SpelerPlaatje = imgNormal.getImage();
 
-        LocatieVeldX = Veld.VELDBREEDTE;
-        LocatieVeldY = Veld.VELDHOOGTE;
+        LocatieVeldX = Veld.VELDGROOTTE;
+        LocatieVeldY = Veld.VELDGROOTTE;
 
     }
 
@@ -39,11 +39,8 @@ public class Speler extends GameObject {
 
     public void move(int paramVeldX, int paramVeldY) {
 
-        LocatieVeldX = LocatieVeldX + paramVeldX * Veld.VELDBREEDTE;
-        LocatieVeldY = LocatieVeldY + paramVeldY * Veld.VELDHOOGTE;
-
-        //Move test
-        //System.out.println("MovingX " + veldX + "MovingY " + veldY);
+        LocatieVeldX = LocatieVeldX + paramVeldX * Veld.VELDGROOTTE;
+        LocatieVeldY = LocatieVeldY + paramVeldY * Veld.VELDGROOTTE;
     }
 
     public int getVeldX() {
@@ -54,25 +51,10 @@ public class Speler extends GameObject {
         return LocatieVeldY;
     }
 
-    public Image getSpelerRechts() {
-        SpelerPlaatje = imgRight.getImage();
-        return SpelerPlaatje;
-    }
-
-    public Image getSpelerLinks() {
-        SpelerPlaatje = imgLeft.getImage();
-        return SpelerPlaatje;
-    }
-
-    public Image getSpelerOmhoog() {
-        SpelerPlaatje = imgUp.getImage();
-        return SpelerPlaatje;
-    }
-
     public void checkAndMove(String direction) {
         switch (direction) {
             case "up":
-                if (!veld.checkIfBlocked(getVeldX(), getVeldY() - Veld.VELDHOOGTE)) {
+                if (!veld.checkIfBlocked(getVeldX(), getVeldY() - Veld.VELDGROOTTE)) {
                     move(0, -1);
                     changeImage("imgUp");
                     break;
@@ -80,7 +62,7 @@ public class Speler extends GameObject {
                     break;
                 }
             case "down":
-                if (!veld.checkIfBlocked(getVeldX(), getVeldY() + Veld.VELDHOOGTE)) {
+                if (!veld.checkIfBlocked(getVeldX(), getVeldY() + Veld.VELDGROOTTE)) {
                     move(0, 1);
                     changeImage("imgDown");
                     break;
@@ -88,7 +70,7 @@ public class Speler extends GameObject {
                     break;
                 }
             case "left":
-                if (!veld.checkIfBlocked(getVeldX() - Veld.VELDBREEDTE, getVeldY())) {
+                if (!veld.checkIfBlocked(getVeldX() - Veld.VELDGROOTTE, getVeldY())) {
                     move(-1, 0);
                     changeImage("imgLeft");
                     break;
@@ -96,7 +78,7 @@ public class Speler extends GameObject {
                     break;
                 }
             case "right":
-                if (!veld.checkIfBlocked(getVeldX() + Veld.VELDBREEDTE, getVeldY())) {
+                if (!veld.checkIfBlocked(getVeldX() + Veld.VELDGROOTTE, getVeldY())) {
                     move(1, 0);
                     changeImage("imgRight");
                     break;

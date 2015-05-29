@@ -17,8 +17,7 @@ import javax.swing.*;
  */
 public class Veld {
 
-    public static final int VELDHOOGTE = 32;
-    public static final int VELDBREEDTE = 32;
+    public static final int VELDGROOTTE = 32;
     public int veldX;
     public int veldY;
     public boolean loopbaar;
@@ -33,8 +32,8 @@ public class Veld {
     public Boolean checkIfBlocked(int x, int y) {
         try {
             LevelMaker levelmaker = new LevelMaker();
-            int yLocation = y / VELDHOOGTE;
-            int xLocation = x / VELDBREEDTE;
+            int yLocation = y / VELDGROOTTE;
+            int xLocation = x / VELDGROOTTE;
 
             if (levelmaker.ArrayStringMap[yLocation][xLocation].equals("m")) {
                 return true;
