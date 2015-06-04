@@ -12,21 +12,23 @@ import javax.swing.ImageIcon;
  *
  * @author HICT
  */
-public class Geit extends GameObject {
+public class Helper extends GameObject {
 
-    private final Image geit;
+    private final Image kaas;
+    public boolean isKaas = true;
 
-    public Geit() {
-        ImageIcon img = new ImageIcon("C:\\Maze\\geit.png");
-        geit = img.getImage();
+    public Helper() {
+        ImageIcon img = new ImageIcon("C:\\Maze\\kaas.PNG");
+        kaas = img.getImage();
 
-        LocatieVeldX = 32;
-        LocatieVeldY = 64;
+        LocatieVeldX = 13;
+        LocatieVeldY = 10;
+
     }
 
     @Override
     public Image getPlaatjeGameObject() {
-        return geit;
+        return kaas;
     }
 
 }

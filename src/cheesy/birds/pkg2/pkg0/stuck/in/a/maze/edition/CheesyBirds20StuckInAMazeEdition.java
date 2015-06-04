@@ -40,7 +40,7 @@ public class CheesyBirds20StuckInAMazeEdition {
         intro.add(startButton);                     //hier zetten we de startknop in de JPanel  
         intro.add(introLabel);                      //hier zetten we de JLabel met de achtergrond-plaatje op onze introscherm
         introFrame.setSize(717, 660);               //hier geven we de size van onze JFrame
-        introFrame.setLocationRelativeTo(null);     // hiermee zet je de introFrame JFrame naar een centerpositie van je beeldscherm
+        introFrame.setLocationRelativeTo(null);     //hiermee zet je de introFrame JFrame naar een centerpositie van je beeldscherm
         introFrame.setVisible(true);                //hier maken we de JFrame zichtbaar op beeld
 
         startButton.addActionListener(new ActionListener() {    //hier wordt de code achtger de startknop uitgevoerd
@@ -57,7 +57,7 @@ public class CheesyBirds20StuckInAMazeEdition {
         JPanel PanelMaze = new JPanel();
 
         //PanelMenu.setLayout(new FlowLayout (FlowLayout.CENTER,0,0));
-        PanelMaze.setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
+        PanelMaze.setLayout(new GridLayout(15, 15));
 
         JButton buttonStart = new JButton("Start");
         buttonStart.setFont(new Font("Dialog", Font.BOLD, 18));

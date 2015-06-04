@@ -8,6 +8,7 @@ package cheesy.birds.pkg2.pkg0.stuck.in.a.maze.edition;
 import static cheesy.birds.pkg2.pkg0.stuck.in.a.maze.edition.Veld.VELDGROOTTE;
 import java.awt.*;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,8 +28,8 @@ public class Speler extends GameObject {
 
         SpelerPlaatje = imgNormal.getImage();
 
-        LocatieVeldX = Veld.VELDGROOTTE;
-        LocatieVeldY = Veld.VELDGROOTTE;
+        LocatieVeldX = 1;
+        LocatieVeldY = 1;
 
     }
 
@@ -39,8 +40,8 @@ public class Speler extends GameObject {
 
     public void move(int paramVeldX, int paramVeldY) {  //private maken
 
-        LocatieVeldX = LocatieVeldX + paramVeldX * Veld.VELDGROOTTE;
-        LocatieVeldY = LocatieVeldY + paramVeldY * Veld.VELDGROOTTE;
+        LocatieVeldX = LocatieVeldX + paramVeldX;
+        LocatieVeldY = LocatieVeldY + paramVeldY;
     }
 
     public int getVeldX() {
@@ -54,7 +55,10 @@ public class Speler extends GameObject {
     public void checkAndMove(String direction) {
         switch (direction) {
             case "up":
-                if (!veld.checkIfBlocked(getVeldX(), getVeldY() - Veld.VELDGROOTTE)) {
+                if (!veld.checkIfBlocked(getVeldX(), getVeldY() - 1)) {
+                    if (isAtEnd("up")) {
+                        endMessage();
+                    }
                     move(0, -1);
                     changeImage("imgUp");
                     break;
@@ -62,7 +66,10 @@ public class Speler extends GameObject {
                     break;
                 }
             case "down":
-                if (!veld.checkIfBlocked(getVeldX(), getVeldY() + Veld.VELDGROOTTE)) {
+                if (!veld.checkIfBlocked(getVeldX(), getVeldY() + 1)) {
+                    if (isAtEnd("down")) {
+                        endMessage();
+                    }
                     move(0, 1);
                     changeImage("imgDown");
                     break;
@@ -70,7 +77,10 @@ public class Speler extends GameObject {
                     break;
                 }
             case "left":
-                if (!veld.checkIfBlocked(getVeldX() - Veld.VELDGROOTTE, getVeldY())) {
+                if (!veld.checkIfBlocked(getVeldX() - 1, getVeldY())) {
+                    if (isAtEnd("left")) {
+                        endMessage();
+                    }
                     move(-1, 0);
                     changeImage("imgLeft");
                     break;
@@ -78,7 +88,10 @@ public class Speler extends GameObject {
                     break;
                 }
             case "right":
-                if (!veld.checkIfBlocked(getVeldX() + Veld.VELDGROOTTE, getVeldY())) {
+                if (!veld.checkIfBlocked(getVeldX() + 1, getVeldY())) {
+                    if (isAtEnd("right")) {
+                        endMessage();
+                    }
                     move(1, 0);
                     changeImage("imgRight");
                     break;
@@ -103,5 +116,25 @@ public class Speler extends GameObject {
                 SpelerPlaatje = imgNormal.getImage();
                 break;
         }
+    }
+
+    public boolean isAtEnd(String direction) {
+        Vriend VriendTemp = new Vriend();
+
+        switch (direction) {
+            case "up":
+                return this.LocatieVeldX == VriendTemp.LocatieVeldX && (this.LocatieVeldY - 1) == VriendTemp.LocatieVeldY;
+            case "down":
+                return this.LocatieVeldX == VriendTemp.LocatieVeldX && (this.LocatieVeldY + 1) == VriendTemp.LocatieVeldY;
+            case "left":
+                return this.LocatieVeldX == (VriendTemp.LocatieVeldX - 1)&& this.LocatieVeldY == VriendTemp.LocatieVeldY;
+            case "right":
+                return this.LocatieVeldX == (VriendTemp.LocatieVeldX + 1) && this.LocatieVeldY == VriendTemp.LocatieVeldY;
+        }
+        return false;
+    }
+    
+    public void endMessage(){
+        JOptionPane.showMessageDialog(null, "Het einde is bereikt");
     }
 }

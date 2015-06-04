@@ -18,7 +18,8 @@ class LevelMaker extends JPanel implements ActionListener {
 
     private Veld veld;
     private Speler speler;
-    private Geit geit;
+    private Vriend vriend;
+    private Helper helper;
     private Muur muur;
     private Gras gras;
     private int muurCounter = 0;
@@ -26,28 +27,28 @@ class LevelMaker extends JPanel implements ActionListener {
 
     public String[][] ArrayStringMap = {
         {"m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m",},
-        {"m", "g", "g", "g", "g", "g", "g", "m", "g", "g", "g", "g", "g", "g", "m",},
-        {"m", "g", "m", "m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
-        {"m", "g", "m", "m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
-        {"m", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "m",},
-        {"m", "g", "m", "m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
-        {"m", "g", "m", "m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
-        {"m", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "m",},
-        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
-        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "g", "m",},
-        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "g", "m", "m", "m", "g", "m",},
-        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "g", "m", "m", "m", "g", "m",},
-        {"m", "g", "m", "m", "m", "m", "m", "m", "m", "g", "m", "m", "m", "g", "m",},
-        {"m", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "m",},
-        {"m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m",}};
-    
+        {"m", "g", "m", "g", "g", "g", "g", "m", "g", "g", "g", "g", "m", "g", "m",},
+        {"m", "g", "m", "m", "g", "m", "g", "m", "m", "g", "m", "g", "m", "g", "m",},
+        {"m", "g", "m", "m", "g", "m", "g", "m", "m", "g", "m", "g", "g", "g", "m",},
+        {"m", "g", "g", "g", "g", "m", "g", "g", "g", "g", "g", "g", "g", "g", "m",},
+        {"m", "g", "m", "m", "g", "m", "g", "m", "m", "m", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "m", "g", "m", "g", "m", "m", "m", "m", "m", "m", "g", "m",},
+        {"m", "g", "g", "g", "g", "g", "g", "g", "m", "g", "g", "g", "g", "g", "m",},
+        {"m", "g", "m", "m", "m", "m", "g", "m", "m", "g", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "g", "m", "m", "g", "m", "m", "g", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "g", "g", "g", "g", "m", "m", "g", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "g", "m", "m", "m", "m", "m", "g", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "g", "m", "m", "m", "m", "m", "g", "m", "m", "m", "g", "m",},
+        {"m", "g", "m", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "g", "m",},
+        {"m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "m", "v", "m",}};
+
     public Veld[][] ArrayVeldMap = new Veld[15][15];
 
     public LevelMaker() {
         //veld = new Veld();            //oud
         maakMuurEnGras();
         speler = new Speler();
-        geit = new Geit();
+        vriend = new Vriend();
         addKeyListener(new ActionListener());
         setFocusable(true);
     }
@@ -65,43 +66,48 @@ class LevelMaker extends JPanel implements ActionListener {
         //Deze loop gebruiken bij het inlezen vanuit een String[][].
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                Veld tempVeld= ArrayVeldMap[y][x];
+                Veld tempVeld = ArrayVeldMap[y][x];
                 g.drawImage(tempVeld.getPlaatjeVeld(), x * Veld.VELDGROOTTE, y * Veld.VELDGROOTTE, null);
-                /*
-                if (ArrayVeldMap[x][y].equals(muur)) {
-                    g.drawImage(muur.getPlaatjeVeld(), x * Veld.VELDGROOTTE, y * Veld.VELDGROOTTE, null);
-                }
-                if (ArrayVeldMap[x][y].equals(gras)) {
-                    g.drawImage(gras.getPlaatjeVeld(), x * Veld.VELDGROOTTE, y * Veld.VELDGROOTTE, null);
-                }*/
             }
         }
+        
+        //Draw helper               fout als hij helper wil tekenen ?
+        g.drawImage(helper.getPlaatjeGameObject(), 64, 64, null);
+    
 
-        //Draw geit
-        g.drawImage(geit.getPlaatjeGameObject(), geit.getVeldX(), geit.getVeldY(), null);
+        //Draw vriend
+        g.drawImage(vriend.getPlaatjeGameObject(), vriend.getVeldX()* Veld.VELDGROOTTE, vriend.getVeldY()* Veld.VELDGROOTTE, null);
 
         //Draw speler
-        g.drawImage(speler.getPlaatjeGameObject(), speler.getVeldX(), speler.getVeldY(), null);
-    }
+        int x = speler.getVeldX();
+        int y = speler.getVeldY();
+        g.drawImage(speler.getPlaatjeGameObject(), speler.getVeldX() * Veld.VELDGROOTTE, speler.getVeldY() * Veld.VELDGROOTTE, null);
+        
+        }
 
     private void maakMuurEnGras() {
         for (int x = 0; x < 15; x++) {
             for (int y = 0; y < 15; y++) {
-                if (ArrayStringMap[x][y].equals("m")) {
-                    muurCounter++;                          
+                if (ArrayStringMap[x][y].equals("m")) {     //muur
+                    muurCounter++;
                     Muur muurNaamCounter = new Muur();
                     muurNaamCounter.veldX = x;
                     muurNaamCounter.veldY = y;
                     ArrayVeldMap[x][y] = muurNaamCounter;
-                    
-                    //System.out.println("Veld Array: " + ArrayVeldMap[x][y]);
-                    
                 }
-                if (ArrayStringMap[x][y].equals("g")) {
+                if (ArrayStringMap[x][y].equals("g")) {     //gras
                     grasCounter++;
                     Gras grasNaamCounter = new Gras();
                     grasNaamCounter.veldX = x;
                     grasNaamCounter.veldY = y;
+                    ArrayVeldMap[x][y] = grasNaamCounter;
+                }
+                 if (ArrayStringMap[x][y].equals("v")) {     //gras + vriend
+                    grasCounter++;
+                    Gras grasNaamCounter = new Gras();
+                    grasNaamCounter.veldX = x;
+                    grasNaamCounter.veldY = y;
+                    grasNaamCounter.bevatItem = "vriend";
                     ArrayVeldMap[x][y] = grasNaamCounter;
                 }
             }
@@ -146,6 +152,5 @@ class LevelMaker extends JPanel implements ActionListener {
         public void keyTyped(KeyEvent e) {
 
         }
-
     }
 }
